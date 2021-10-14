@@ -8,10 +8,13 @@
 </head>
 <body>
     <?php
+    #include 'variable.php';
+    $tajuk = 'variable.php';
+    include $tajuk;
     $harga_baju = 24;
     $duit_bawa = 50;
 
-    $hasil = kira($harga_baju, $baki_duit);
+    $hasil = kira($harga_baju, $duit_bawa);
 
     $bilangan_baju = $hasil['bilangan_baju'];
     $baki_duit = $hasil['baki_duit'];
@@ -26,8 +29,14 @@
 
 <?php
 function kira($harga_baju, $duit_bawa){
-    $bilangan_baju = 2;
-    $baki_duit = $duit_bawa * $bilangan_baju;
+    $bilangan_baju = 0;
+    $baki_duit = 0;
+    for ($duit_bawa = 50; $duit_bawa > $harga_baju; $duit_bawa -= $harga_baju) {
+        $bilangan_baju++;
+    
+        $baki_duit = $duit_bawa - $harga_baju;
+        
+    }
     
     $hasil = [
         'bilangan_baju' => $bilangan_baju,
